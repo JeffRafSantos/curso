@@ -1,0 +1,24 @@
+def pesohomem(h):
+    contm = (pm * h) - 58
+    print(f"{recepcao} seu peso ideal é/seria {contm:.2f}kg")
+
+def pesomulher(h):
+    contf = (pf * h) - 44.7
+    print(f"{recepcao} seu peso ideal é/seria {contf:.2f}kg")
+
+#usuario
+recepcao = input("Olá, digite seu nome: ")
+gen = input("Você é do sexo masculino ou feminino: ")
+h = float(input("Digite sua altura em metros: "))
+pm = 72.7
+pf = 62.1
+sm = 'masculino'
+sf = 'feminino'
+
+#principal
+if gen == sm:
+    pesohomem(h)
+elif gen == sf:
+    pesomulher(h)
+else:
+    print("Você deve digitar sua sexualidade corretamente :/")
