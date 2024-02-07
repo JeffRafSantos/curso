@@ -1,0 +1,13 @@
+#recepção
+ht = int(input("Digite quantas horas você trabalha no mês: "))
+hs = int(input("Digite quanto você ganha por hora trabalhada: "))
+sbruto = ht * hs
+
+#descontos
+cont1 = sbruto * 0.11
+cont2 = sbruto * 0.08
+cont3 = sbruto * 0.05
+sliquido = sbruto - cont1 - cont2 - cont3
+
+#salario_liquido
+print(f"Seu salário liquído da R${sliquido:.2f}")
