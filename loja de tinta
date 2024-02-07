@@ -1,0 +1,11 @@
+import math
+#recepção
+mq = int(input("Digite quantos metros² você quer pintar: "))
+
+#contagem de litros, latas e valor
+qlitros = mq / 3
+qlata = math.ceil(qlitros / 18)
+valor = qlata * 80
+
+#resolução
+print(f"Para pintar {mq} m² você vai precisar de {qlata} latas de tinta, valor total R${valor:.2f}")
