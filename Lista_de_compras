@@ -1,0 +1,40 @@
+def menu():
+    print("Lista de compras\n 1 - Adicionar item\n 2 - Remover item\n 3 - Ver lista\n 4 - Sair")
+    return int(input("Escolha uma opção: "))
+
+def adicionar_item(lista_compras):
+        produto = input("Digite o nome do produto: ").lower()
+        qtde = int(input("Digite a quantidade: "))
+        if produto in list_compras:
+            lista_compras[produto] += qtde
+        else:
+            lista_compras[produto] = qtde
+
+def remover_item(lista_compras):
+    produto = input("Digite o nome do produto: ").lower()
+    if produto in list_compras:
+        qtde = int(input("Digite a quantidade: "))
+        if qtde >= lista_compras[produto]:
+            del lista_compras[produto]
+            print("Item removido da lista")
+        else:
+            lista_compras[produto] -= qtde
+    else:
+        print("Produto inexistente")
+
+list_compras = {}
+
+
+while True:
+    opcoes = menu()
+    if opcoes == 1:
+        adicionar_item(list_compras)
+    elif opcoes == 2:
+        remover_item(list_compras)
+    elif opcoes == 3:
+        print(list_compras)
+    elif opcoes == 4:
+        break
+    else:
+        print("Opção inválida, selecione uma opção valida")
+
