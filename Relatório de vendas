@@ -1,0 +1,37 @@
+def solicitar_nome_vendedor():
+    return input("Digite o nome do vendedor: ").lower()
+
+def solicitar_vendas():
+    try:
+        return int(input("Digite a quantidade de vendas: "))
+    except ValueError:
+        print("Entrada inválida. Por favor, digite um número para vendas.")
+        return None
+
+def atualizar_dados(banco_dados, nome, vendas):
+    if nome not in banco_dados:
+        banco_dados[nome] = {'total_vendas': vendas, 'qtde_vendas': 1}
+    else:
+        banco_dados[nome]['total_vendas'] += vendas
+        banco_dados[nome]['qtde_vendas'] += 1
+
+def print_dados(banco_dados):
+    for nome, dados in banco_dados.items():
+        total_vendas = dados['total_vendas']
+        media_vendas = total_vendas / dados['qtde_vendas']
+        return (f"{nome}: Total de vendas = R$ {total_vendas}, Média de vendas = R$ {media_vendas}")
+
+def main():
+    banco_dados = {}
+    while True:
+        nome = solicitar_nome_vendedor()
+        if nome == 'sair':
+            break
+        vendas = solicitar_vendas()
+        if vendas is None:
+            continue
+        atualizar_dados(banco_dados, nome, vendas)
+    print_dados(banco_dados)
+
+if __name__ == "__main__":
+    main()
