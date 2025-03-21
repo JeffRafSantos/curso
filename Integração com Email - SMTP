@@ -1,0 +1,46 @@
+# SMTP
+
+import smtplib
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.mime.application import MIMEApplication
+import os
+def enviar_email():
+
+    #informações básicas
+    msg = MIMEMultipart()
+    msg["Subsject"] = "Email enviado com Python"
+    msg["From"] = "jefinho.santos3020@gmail.com"
+    msg["To"] = "elliasribeiro.e7@gmail.com"
+    msg["Cc"] = "jefinho.santos3020+copia@gmail.com"
+
+    #link da imagem no google para adicionar no email
+    link_imagem = "https://pics.craiyon.com/2023-10-11/7c88f7aa750146efaddc304a89b4d3ee.webp"
+
+    #informações do email
+    corpo_email = f"""<p>Boa noite, Elias</p>
+    <p>Espero que esteja bem</p>
+    <p> </P>
+    <p>Esse é meu terceiro email com Python, e venho te trazer uma proposta vantajosa, você tem um ótimo perfil para ser um revendedor O Boticário, segue em anexo a proposta</p>
+    <p> </P>
+    <p>Att., Jeferson</p>
+    <img src='{link_imagem}'>"""
+
+    #transforma o corpo do email em HTML
+    msg.attach(MIMEText(corpo_email, "html"))
+
+    #anexar arquivo
+    lista_arquivos = os.listdir("C:\Anexos")
+    for nome_arquivo in lista_arquivos:
+        with open(f"C:\Anexos/{nome_arquivo}", "rb") as arquivo:
+            msg.attach(MIMEApplication(arquivo.read(), Name=nome_arquivo))
+
+    #informações do servidor
+    servidor = smtplib.SMTP("smtp.gmail.com", 587)
+    servidor.starttls()
+    servidor.login(msg["From"], "nygq jzmu tmmx mwdm")
+    servidor.send_message(msg)
+    servidor.quit()
+    print("Email enviado")
+
+enviar_email()
